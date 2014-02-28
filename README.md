@@ -10,14 +10,12 @@ Requirements
 ### Cookbooks
 The following cookbooks are direct dependencies because they're used for common "default" functionality.
 
-- build-essential (for nginx::source)
 - ohai (for nginx::ohai_plugin)
 
 The following cookbook is not a strict dependency because its use can be controlled by an attribute, so it may not be a common "default."
 
 - runit (for nginx::source)
 - On RHEL family distros, the "yum" cookbook is required for `recipe[yum::epel]`.
-- On Ubuntu, when using Nginx.org's stable package, `recipe[apt::default]` is required.
 
 
 ### Platforms
@@ -132,13 +130,6 @@ Rate Limiting
 - `node['nginx']['gzip_disable']` - used for config value of `gzip_disable`.
 
 ### Attributes set in recipes
-
-#### nginx::source
-- `node['nginx']['daemon_disable']` - Whether the daemon should be
-  disabled which can be true or false; disable the daemon (run in the
-  foreground) when using a service supervisor such as runit or
-  bluepill for "init_style". This is automatically set in the
-  `nginx::source` recipe when the init style is not bluepill or runit.
 
 #### nginx::authorized_ips
 - `node['nginx']['remote_ip_var']` - The remote ip variable name to
@@ -322,7 +313,6 @@ The nginx service will be set up according to
 `node['nginx']['init_style']`. Available options are:
 
 - runit: uses runit cookbook and sets up `runit_service`.
-- bluepill: uses bluepill cookbook and sets up `bluepill_service`.
 - anything else (e.g., "init") will use the nginx init script
   template.
 
