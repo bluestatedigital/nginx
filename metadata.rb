@@ -8,8 +8,6 @@ version           '2.4.3'
 recipe 'nginx',         'Installs nginx package and sets up configuration with Debian apache style with sites-enabled/sites-available'
 recipe 'nginx::source', 'Installs nginx from source and sets up configuration with Debian apache style with sites-enabled/sites-available'
 
-depends 'ohai',            '~> 1.1'
-depends 'runit',           '~> 1.2'
 depends 'yum',             '~> 3.0'
 depends 'yum-epel'
 

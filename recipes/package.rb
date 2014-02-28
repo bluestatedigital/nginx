@@ -18,8 +18,6 @@
 # limitations under the License.
 #
 
-include_recipe 'nginx::ohai_plugin'
-
 if platform_family?('rhel')
   if node['nginx']['repo_source'] == 'epel'
     include_recipe 'yum-epel'
@@ -37,7 +35,7 @@ elsif platform_family?('debian')
 end
 
 package node['nginx']['package_name'] do
-  notifies :reload, 'ohai[reload_nginx]', :immediately
+  #notifies :reload, 'ohai[reload_nginx]', :immediately
 end
 
 service 'nginx' do

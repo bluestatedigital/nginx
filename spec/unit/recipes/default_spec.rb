@@ -3,10 +3,6 @@ require 'spec_helper'
 describe 'nginx::default' do
   let(:chef_run) { ChefSpec::Runner.new(:platform => 'debian', :version  => '7.0').converge(described_recipe) }
 
-  it 'loads the ohai plugin' do
-    expect(chef_run).to include_recipe('nginx::ohai_plugin')
-  end
-
   it 'builds from source when specified' do
     chef_run.node.set['nginx']['install_method'] = 'source'
     chef_run.converge(described_recipe)

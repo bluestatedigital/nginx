@@ -8,13 +8,9 @@ Installs nginx from package OR source code and sets up configuration handling si
 Requirements
 ------------
 ### Cookbooks
-The following cookbooks are direct dependencies because they're used for common "default" functionality.
-
-- ohai (for nginx::ohai_plugin)
 
 The following cookbook is not a strict dependency because its use can be controlled by an attribute, so it may not be a common "default."
 
-- runit (for nginx::source)
 - On RHEL family distros, the "yum" cookbook is required for `recipe[yum::epel]`.
 
 
@@ -40,10 +36,8 @@ Generally used attributes. Some have platform specific values. See `attributes/d
 - `node['nginx']['group]` - Group for Nginx.
 - `node['nginx']['binary']` - Path to the Nginx binary.
 - `node['nginx']['init_style']` - How to run Nginx as a service when
-  using `nginx::source`. Values can be "runit", "upstart", "init" or
-  "bluepill".  When using runit or bluepill, those recipes will be
-  included as well and are dependencies of this cookbook.  Recipes
-  are not included for upstart, it is assumed that upstart is built
+  using `nginx::source`. Values can be "upstart" or "init".
+  Recipes are not included for upstart, it is assumed that upstart is built
   into the platform you are using (ubuntu or el6).  This attribute is
   not used in the `nginx` recipe because the package manager's init
   script style for the platform is assumed.  Upstart is never set as
@@ -284,12 +278,6 @@ using the `nxensite` and `nxdissite` scripts. The nginx service will
 be managed with the normal init scripts that are presumably included
 in the native package.
 
-Includes the `ohai_plugin` recipe so the plugin is available.
-
-### ohai_plugin
-This recipe provides an Ohai plugin as a template. It is included by
-both the `default` and `source` recipes.
-
 ### authorized_ips
 Sets up configuration for the `authorized_ip` nginx module.
 
@@ -312,7 +300,6 @@ trigger a recompile.
 The nginx service will be set up according to
 `node['nginx']['init_style']`. Available options are:
 
-- runit: uses runit cookbook and sets up `runit_service`.
 - anything else (e.g., "init") will use the nginx init script
   template.
 
@@ -361,23 +348,6 @@ The recipe will be included by `recipe[nginx::source]` automatically,
 adding the configure flags. Add any other configuration templates or
 other resources as required. See the recipes described above for
 examples.
-
-
-Ohai Plugin
------------
-The `ohai_plugin` recipe includes an Ohai plugin. It will be
-automatically installed and activated, providing the following
-attributes via ohai, no matter how nginx is installed (source or
-package):
-
-- `node['nginx']['version']` - version of nginx
-- `node['nginx']['configure_arguments']` - options passed to
-  `./configure` when nginx was built
-- `node['nginx']['prefix']` - installation prefix
-- `node['nginx']['conf_path']` - configuration file path
-
-In the source recipe, it is used to determine whether control
-attributes for building nginx have changed.
 
 
 Usage
