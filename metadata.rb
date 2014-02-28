@@ -8,9 +8,6 @@ version           '2.4.3'
 recipe 'nginx',         'Installs nginx package and sets up configuration with Debian apache style with sites-enabled/sites-available'
 recipe 'nginx::source', 'Installs nginx from source and sets up configuration with Debian apache style with sites-enabled/sites-available'
 
-depends 'yum',             '~> 3.0'
-depends 'yum-epel'
-
 supports 'amazon'
 supports 'centos'
 supports 'debian'

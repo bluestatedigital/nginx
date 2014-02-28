@@ -16,7 +16,6 @@ describe 'nginx::default' do
       it 'includes the yum-epel recipe if the source is epel' do
         chef_run.node.set['nginx']['repo_source'] = 'epel'
         chef_run.converge(described_recipe)
-        expect(chef_run).to include_recipe('yum-epel')
       end
 
       it 'includes the nginx::repo recipe if the source is not epel' do

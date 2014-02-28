@@ -9,10 +9,7 @@ Requirements
 ------------
 ### Cookbooks
 
-The following cookbook is not a strict dependency because its use can be controlled by an attribute, so it may not be a common "default."
-
-- On RHEL family distros, the "yum" cookbook is required for `recipe[yum::epel]`.
-
+NONE, ASSHOLES
 
 ### Platforms
 The following platforms are supported and tested under test kitchen:
@@ -97,7 +94,7 @@ Generally used attributes. Some have platform specific values. See `attributes/d
   size of a client request, as indicated by the request header Content-Length.
 - `node['nginx']['repo_source']` - when installed from a package this attribute affects
   which yum repositories, if any, will be added before installing the nginx package. The
-  default value of 'epel' will use the `yum::epel` recipe, 'nginx' will use the
+  'nginx' value will use the
   `nginx::repo` recipe, and setting no value will not add any additional repositories.
 
 Rate Limiting

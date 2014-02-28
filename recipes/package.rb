@@ -20,7 +20,7 @@
 
 if platform_family?('rhel')
   if node['nginx']['repo_source'] == 'epel'
-    include_recipe 'yum-epel'
+#    include_recipe 'yum-epel'
   elsif node['nginx']['repo_source'] == 'nginx'
     include_recipe 'nginx::repo'
   elsif node['nginx']['repo_source'].nil?
