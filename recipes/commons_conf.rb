@@ -39,3 +39,19 @@ end
 nginx_site 'default' do
   enable node['nginx']['default_site_enabled']
 end
+
+directory node['nginx']['default_root'] do
+  owner "root"
+  group "root"
+  mode "0755"
+  recursive true
+  action :create
+end
+
+file "#{node['nginx']['default_root']}/ping.html" do
+  owner "root"
+  group "root"
+  mode "0644"
+  content "PONG"
+  action :create
+end
