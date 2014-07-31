@@ -97,3 +97,6 @@ default['nginx']['types_hash_bucket_size'] = 64
 default['nginx']['proxy_read_timeout']      = nil
 default['nginx']['client_body_buffer_size'] = nil
 default['nginx']['client_max_body_size']    = nil
+
+default['nginx']['status_site_enabled'] = true
+default['nginx']['status_addr'] = '127.0.0.1:7070'

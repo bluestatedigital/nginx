@@ -1,0 +1,10 @@
+server {
+  listen <%= node['nginx']['status_addr'] %>;
+  server_name <%= node['hostname'] %>;
+
+  access_log <%= node['nginx']['log_dir'] %>/status.access.log;
+
+  location /status {
+    stub_status on;
+  }
+}

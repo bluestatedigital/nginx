@@ -40,6 +40,18 @@ nginx_site 'default' do
   enable node['nginx']['default_site_enabled']
 end
 
+template "#{node['nginx']['dir']}/sites-available/status" do
+  source 'status-site.erb'
+  owner  'root'
+  group  'root'
+  mode   '0644'
+  notifies :reload, 'service[nginx]'
+end
+
+nginx_site 'status' do
+  enable node['nginx']['status_site_enabled']
+end
+
 directory node['nginx']['default_root'] do
   owner "root"
   group "root"
