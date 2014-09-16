@@ -3,7 +3,7 @@ server {
   server_name <%= node['hostname'] %>;
 
   access_log <%= node['nginx']['log_dir'] %>/localhost.access.log;
-  root <%= node['nginx']['default_root %>;
+  root <%= node['nginx']['default_root'] %>;
   index index.php index.html index.htm;
 
   location / {
