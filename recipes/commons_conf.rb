@@ -67,3 +67,11 @@ file "#{node['nginx']['default_root']}/ping.html" do
   content "PONG"
   action :create
 end
+
+cookbook_file "#{node['nginx']['default_root']}/clearcache.php" do
+  source "clearcache.php"
+  owner "root"
+  group "root"
+  mode "0644"
+  action :create
+end
